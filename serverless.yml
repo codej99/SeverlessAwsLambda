@@ -1,0 +1,44 @@
+service: helloworld
+
+custom:
+  prune:
+    automatic: true
+    number: 5
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: ap-northeast-2
+  profile: codej99
+  role: arn:aws:iam::478069740483:role/serverless-role
+  apiGateway: 
+    restApiId: ezq7plb9t6
+    restApiRootResourceId: 0q66ks9ya8
+  environment:
+    key1: 
+      value1
+    key2:
+      value2
+
+functions:
+  hello:
+    handler: handler.hello
+    destinations:
+      onSuccess: arn:aws:sqs:ap-northeast-2:478069740483:succ-lambda
+      onFailure: arn:aws:sns:ap-northeast-2:478069740483:fail-lambda
+    events:
+      - http:
+          path: hello/get
+          method: get
+          cors: true
+  user:
+    handler: handler.user
+    events:
+      - http:
+          path: user/{id}
+          method: post
+          cors: true
+          
+plugins:
+  - serverless-offline
+  - serverless-prune-plugin

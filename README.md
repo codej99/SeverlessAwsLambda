@@ -9,8 +9,22 @@
 - node.js v12
 - serverless framework 1.62.0
 - vscode
+
+### 2. 실행
+- 로컬 테스트
+    - $ sls invoke local -f hello
+- 로컬 Gateway 환경 띄우기
+    - $ sls offline start
+    - 터미널에서 주소를 호출
+        - curl -X POST \
+            -H "Content-type: application/json" \
+            -H "Accept: application/json" \
+            -d '{"foo":"bar", "aws":"lambda"}' \
+            "localhost:3000/user/10?isValid=true"
+- 서버에 배포
+    - $ sls deploy -s production
        
-### 2. 목차
+### 3. 목차
 - aws lambda 개발하기(1) – 로컬 개발 환경 구축(node.js + serverless)
     - Document
         - https://daddyprogrammer.org/post/9131/aws-lambda-setup-develop-environment/

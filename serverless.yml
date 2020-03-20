@@ -11,9 +11,9 @@ provider:
   region: ap-northeast-2
   profile: codej99
   role: arn:aws:iam::478069740483:role/serverless-role
-  apiGateway: 
-    restApiId: ezq7plb9t6
-    restApiRootResourceId: 0q66ks9ya8
+  # apiGateway: 
+  #   restApiId: ezq7plb9t6
+  #   restApiRootResourceId: 0q66ks9ya8
   environment:
     key1: 
       value1
@@ -23,6 +23,9 @@ provider:
 functions:
   hello:
     handler: handler.hello
+    description: This function practices hellolambda.
+    memorySize: 512 # optional, in MB, default is 1024
+    timeout: 10 # optional, in seconds, default is 6
     destinations:
       onSuccess: arn:aws:sqs:ap-northeast-2:478069740483:succ-lambda
       onFailure: arn:aws:sns:ap-northeast-2:478069740483:fail-lambda
@@ -31,6 +34,7 @@ functions:
           path: hello/get
           method: get
           cors: true
+    
   user:
     handler: handler.user
     events:

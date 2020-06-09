@@ -28,21 +28,21 @@ workflows:
       jobs:
         - deploy:
             name: deploy-dev
-            contenxt: codej99
+            context: codej99
             filters:
               branches:
                 only:
                   - dev
         - deploy:
             name: deploy-sandbox
-            contenxt: codej99
+            context: codej99
             filters:
               branches:
                 only:
                   - sandbox
         - deploy:
             name: deploy-production
-            contenxt: codej99
+            context: codej99
             filters:
               branches:
                 only:

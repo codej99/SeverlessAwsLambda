@@ -10,6 +10,9 @@ jobs:
       - checkout
       - aws-cli/setup:
           profile-name: codej99
+      - restore_cache:
+          keys:
+            - npm-packages-
       - run:
           name: Install dependancies
           command: |
@@ -17,8 +20,12 @@ jobs:
             npm Install
             npm install --save-dev serverless-offline
             npm install --save-dev serverless-prune-plugin
+      - save_cache:
+          paths:
+            - node_modules
+          key: npm-packages-
       - run:
-          name: deploy ~/lambda
+          name: deploy lambda
           command: |
             echo "CIRCLE_BRANCH=> $CIRCLE_BRANCH"
             sls deploy -s $CIRCLE_BRANCH

@@ -14,7 +14,7 @@ jobs:
           name: Install dependancies
           command: |
             sudo npm i -g serverless
-            npm Install
+            npm install
             npm install --save-dev serverless-offline
             npm install --save-dev serverless-prune-plugin
       - run:

@@ -1,0 +1,49 @@
+version: 2.1
+orbs:
+  aws-cli: circleci/aws-cli@1.0.0
+jobs:
+  deploy:
+    docker:
+      - image: circleci/node@1.1.6
+    working_directory: ~/lambda
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile-name: codej99
+      - run:
+          name: Install dependancies
+          command: |
+            sudo npm i -g serverless
+            npm Install
+            npm install --save-dev serverless-offline
+            npm install --save-dev serverless-prune-plugin
+      - run:
+          name: deploy ~/lambda
+          command: |
+            echo "CIRCLE_BRANCH=> $CIRCLE_BRANCH"
+            sls deploy -s $CIRCLE_BRANCH
+workflows:
+    version: 2.1
+    build-and-deploy:
+      jobs:
+        - deploy:
+            name: deploy-dev
+            context: codej99
+            filters:
+              branches:
+                only:
+                  - dev
+        - deploy:
+            name: deploy-sandbox
+            context: codej99
+            filters:
+              branches:
+                only:
+                  - sandbox
+        - deploy:
+            name: deploy-production
+            context: codej99
+            filters:
+              branches:
+                only:
+                  - production

@@ -4,15 +4,12 @@ orbs:
 jobs:
   deploy:
     docker:
-      - image: circleci/node@1.1.6
+      - image: circleci/node:12.14.1
     working_directory: ~/lambda
     steps:
       - checkout
       - aws-cli/setup:
           profile-name: codej99
-      - restore_cache:
-          keys:
-            - npm-packages-
       - run:
           name: Install dependancies
           command: |
@@ -20,10 +17,6 @@ jobs:
             npm Install
             npm install --save-dev serverless-offline
             npm install --save-dev serverless-prune-plugin
-      - save_cache:
-          paths:
-            - node_modules
-          key: npm-packages-
       - run:
           name: deploy lambda
           command: |

@@ -1,3 +1,8 @@
+![Node_12](https://img.shields.io/badge/node.js-v12-green?logo=node.js)
+![Node_12](https://img.shields.io/badge/npm-v6.13.4-red?logo=npm)
+![Serverless-framework](https://img.shields.io/badge/Serverless_framework-v1.62.0-orange.svg?logo=serverless)
+![Lambda](https://img.shields.io/badge/AWS_Lambda-latest-blue.svg)
+
 # AWS Lambda + Serverless Framework 실습
 
 ### 0. 개요

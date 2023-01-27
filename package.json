@@ -15,7 +15,7 @@
     "redis": "^3.0.2"
   },
   "devDependencies": {
-    "serverless": "^1.66.0",
+    "serverless": "^3.27.0",
     "serverless-offline": "^5.12.1",
     "serverless-prune-plugin": "^1.4.2"
   },
